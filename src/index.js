@@ -54,14 +54,11 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-const mongoDB = `mongodb+srv://${
-    process.env.DB_USER && process.env.DB_PASSWORD ? `${process.env.DB_USER}:${encodeURIComponent(process.env.DB_PASSWORD)}@` : ""
-}${process.env.DB_HOST}/shortener?retryWrites=true&w=majority`;
 
 mongoose.set("strictQuery", false);
 
 mongoose
-    .connect(mongoDB, {
+    .connect(process.env.DB_URI, {
         useNewUrlParser: true,
         useUnifiedTopology: true,
     })
