@@ -54,9 +54,9 @@ if (process.env.NODE_ENV === "production") {
     });
 }
 
-const mongoDB = `mongodb://${
+const mongoDB = `mongodb+srv://${
     process.env.DB_USER && process.env.DB_PASSWORD ? `${process.env.DB_USER}:${encodeURIComponent(process.env.DB_PASSWORD)}@` : ""
-}${process.env.DB_HOST}:${process.env.DB_PORT}/shortener?authSource=admin`;
+}${process.env.DB_HOST}/shortener?retryWrites=true&w=majority`;
 
 mongoose.set("strictQuery", false);
 
